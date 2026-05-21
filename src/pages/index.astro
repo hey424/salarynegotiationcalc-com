@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const title = 'Salary Negotiation Calculator | salarynegotiationcalc.com';
+const description = 'Estimate your target salary range for a job offer negotiation. Based on market data, experience, location, and industry. Free, informational.';
+---
+<BaseLayout title={title} description={description}>
+  <h1>Salary Negotiation Calculator</h1>
+  <p><em>Reviewed by Aspen Lockwood (AL), Editor-in-Chief. Updated May 2026.</em></p>
+  <p>Most employers expect salary negotiation. Research shows 85% of people who negotiate receive a higher offer — yet fewer than 40% of job seekers negotiate at all. This calculator estimates your target salary range based on your current compensation, market data proxies, years of experience, and location, helping you anchor your negotiation with a data-backed number.</p>
+  <h2>Run the estimate</h2>
+  <form id="calc" novalidate>
+    <label for="current-salary">Current salary (USD, or most recent salary)</label>
+    <input id="current-salary" type="number" value="75000" min="0" />
+    <label for="years-exp">Total years of relevant experience</label>
+    <input id="years-exp" type="number" value="5" min="0" max="40" />
+    <label for="industry">Industry</label>
+    <select id="industry">
+      <option value="tech">Technology / Software</option>
+      <option value="finance">Finance / Banking / Insurance</option>
+      <option value="healthcare">Healthcare / Pharma</option>
+      <option value="legal">Legal / Law</option>
+      <option value="engineering">Engineering / Manufacturing</option>
+      <option value="marketing">Marketing / Advertising / PR</option>
+      <option value="education">Education / Nonprofit</option>
+      <option value="government">Government / Public sector</option>
+      <option value="other">Other</option>
+    </select>
+    <label for="location">Location premium</label>
+    <select id="location">
+      <option value="tier1">Tier 1 city — NYC, SF, Seattle, Boston, DC</option>
+      <option value="tier2">Tier 2 city — Chicago, Austin, Denver, Miami, Atlanta</option>
+      <option value="tier3">Tier 3 / suburban / rural</option>
+      <option value="remote">Fully remote (no location premium)</option>
+    </select>
+    <label for="offer">Do you have an existing offer to negotiate?</label>
+    <select id="offer">
+      <option value="no">No — estimating market range only</option>
+      <option value="yes">Yes — I have an offer I want to negotiate</option>
+    </select>
+    <label for="offer-amount">Existing offer amount (USD, if applicable)</label>
+    <input id="offer-amount" type="number" value="0" min="0" />
+    <button type="submit">Calculate target range</button>
+  </form>
+  <p id="result" aria-live="polite"></p>
+  <h2>How to use these numbers</h2>
+  <p>Use the high end of your estimated range as your opening ask. Anchor high — you can always come down; you can rarely go up. Ask with confidence and a brief rationale (&ldquo;Based on my research and X years of experience in [skill], I&rsquo;m targeting $Y&rdquo;). Then stop talking. Silence after making your ask is one of the most powerful negotiation tools.</p>
+  <h2>Beyond base salary</h2>
+  <p>If the employer can&rsquo;t meet your base salary ask, negotiate total compensation: signing bonus, equity/RSUs, accelerated review cycle, extra vacation days, remote work flexibility, professional development budget, or improved benefits. Total comp often has more flexibility than base.</p>
+  <h2>Where to learn more</h2>
+  <p>See <a href="/guides/how-to-negotiate-salary">how to negotiate salary</a>, <a href="/guides/salary-research-guide">salary research guide</a>, <a href="/guides/negotiating-job-offers">negotiating job offers</a>, and <a href="/guides/salary-negotiation-misconceptions">common salary negotiation misconceptions</a>.</p>
+  <script>
+    document.getElementById('calc').addEventListener('submit', e => {
+      e.preventDefault();
+      const current = parseFloat(document.getElementById('current-salary').value)||75000;
+      const years = parseFloat(document.getElementById('years-exp').value)||0;
+      const industry = document.getElementById('industry').value;
+      const location = document.getElementById('location').value;
+      const hasOffer = document.getElementById('offer').value==='yes';
+      const offerAmt = parseFloat(document.getElementById('offer-amount').value)||0;
+      // Industry premiums (multiplier vs. base)
+      const industryMult = {tech:1.20,finance:1.18,healthcare:1.10,legal:1.15,engineering:1.08,marketing:0.98,education:0.85,government:0.90,other:1.0};
+      const locMult = {tier1:1.25,tier2:1.08,tier3:0.95,remote:1.0};
+      // Experience-based progression (diminishing returns)
+      const expBonus = Math.min(0.40, years * 0.03);
+      const base = hasOffer && offerAmt>0 ? offerAmt : current;
+      const marketRate = base * industryMult[industry] * locMult[location] * (1 + expBonus);
+      const targetLow = marketRate * 1.05;
+      const targetHigh = marketRate * 1.20;
+      const opening = marketRate * 1.25;
+      const fmt = n=>'$'+Math.round(n).toLocaleString();
+      const offerNote = hasOffer && offerAmt>0 ? ` Your offer of ${fmt(offerAmt)} is ${offerAmt >= marketRate*0.95 ? 'near market rate' : 'below market rate'}.` : '';
+      document.getElementById('result').innerHTML =
+        `<strong>Target range: ${fmt(targetLow)} &ndash; ${fmt(targetHigh)}</strong><br>Opening ask (anchor high): ${fmt(opening)} &bull; Market estimate: ${fmt(Math.round(marketRate))}${offerNote}<br><em>Use the high end as your opening number. Research on Glassdoor, Levels.fyi (tech), and LinkedIn Salary to validate. Total comp (equity, bonus, PTO) often has more flexibility than base.</em>`;
+    });
+  </script>
+</BaseLayout>
