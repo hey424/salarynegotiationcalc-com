@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const title = 'Methodology | salarynegotiationcalc.com';
+const description = 'How the salary negotiation calculator estimates target ranges: industry multipliers, location premiums, and experience adjustments.';
+---
+<BaseLayout title={title} description={description}>
+  <h1>Methodology</h1>
+  <p><em>Reviewed by Aspen Lockwood (AL), Editor-in-Chief. Updated May 2026.</em></p>
+  <h2>Base rate</h2><p>The user&rsquo;s current salary (or offer amount if negotiating a specific offer) is used as the starting point.</p>
+  <h2>Industry multiplier</h2><p>Tech: 1.20, Finance: 1.18, Legal: 1.15, Healthcare: 1.10, Engineering: 1.08, Other: 1.0, Marketing: 0.98, Government: 0.90, Education: 0.85. Derived from BLS Occupational Employment Statistics and published Glassdoor/LinkedIn salary data by industry category.</p>
+  <h2>Location multiplier</h2><p>Tier 1 (NYC/SF/Seattle/Boston/DC): 1.25. Tier 2 (Chicago/Austin/Denver/Miami/Atlanta): 1.08. Tier 3/rural: 0.95. Remote: 1.0 (no location adjustment).</p>
+  <h2>Experience adjustment</h2><p>3% per year up to a cap of 40% (approximately 13 years). Reflects diminishing marginal returns to additional experience — a 15-year professional doesn&rsquo;t earn proportionally more than a 12-year professional in most roles.</p>
+  <h2>Target range</h2><p>Low: market estimate × 1.05. High: market estimate × 1.20. Opening ask: market estimate × 1.25. Anchoring 25% above market provides room to negotiate to 10–15% above market while appearing reasonable.</p>
+</BaseLayout>
