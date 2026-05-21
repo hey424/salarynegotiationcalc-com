@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://salarynegotiationcalc.com/sitemap-index.xml
