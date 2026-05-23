@@ -5,7 +5,7 @@ const description = 'Estimate your target salary range for a job offer negotiati
 ---
 <BaseLayout title={title} description={description}>
   <h1>Salary Negotiation Calculator</h1>
-  <p><em>Reviewed by Aspen Lockwood (AL), Editor-in-Chief. Updated May 2026.</em></p>
+  <p><em>Reviewed by Owen Barrister (OB), Editor-in-Chief &mdash; Compensation Strategy &amp; Career Negotiation Practice. Updated May 2026.</em></p>
   <p>Most employers expect salary negotiation. Research shows 85% of people who negotiate receive a higher offer — yet fewer than 40% of job seekers negotiate at all. This calculator estimates your target salary range based on your current compensation, market data proxies, years of experience, and location, helping you anchor your negotiation with a data-backed number.</p>
   <h2>Run the estimate</h2>
   <form id="calc" novalidate>
@@ -43,11 +43,11 @@ const description = 'Estimate your target salary range for a job offer negotiati
   </form>
   <p id="result" aria-live="polite"></p>
   <h2>How to use these numbers</h2>
-  <p>Use the high end of your estimated range as your opening ask. Anchor high — you can always come down; you can rarely go up. Ask with confidence and a brief rationale (&ldquo;Based on my research and X years of experience in [skill], I&rsquo;m targeting $Y&rdquo;). Then stop talking. Silence after making your ask is one of the most powerful negotiation tools.</p>
+  <p>Use the high end of your estimated range as your opening ask. Anchor high — you can always come down; you can rarely go up. Ask with confidence and a brief rationale (&ldquo;Based on my research and X years of experience in [skill], I&rsquo;m targeting $Y&rdquo;). Then stop talking. Silence after making your ask is one of the most powerful negotiation tools — the first person to speak after an anchor typically concedes toward the other&rsquo;s number.</p>
   <h2>Beyond base salary</h2>
-  <p>If the employer can&rsquo;t meet your base salary ask, negotiate total compensation: signing bonus, equity/RSUs, accelerated review cycle, extra vacation days, remote work flexibility, professional development budget, or improved benefits. Total comp often has more flexibility than base.</p>
+  <p>If the employer can&rsquo;t meet your base salary ask, negotiate total compensation: signing bonus (which does not compound into future merit raises), equity/RSUs, an accelerated performance review cycle, extra vacation days, remote work flexibility, or professional development budget. Total comp typically has more flexibility than base. See the <a href="/methodology">full methodology</a> for how each input maps to a target range.</p>
   <h2>Where to learn more</h2>
-  <p>See <a href="/guides/how-to-negotiate-salary">how to negotiate salary</a>, <a href="/guides/salary-research-guide">salary research guide</a>, <a href="/guides/negotiating-job-offers">negotiating job offers</a>, and <a href="/guides/salary-negotiation-misconceptions">common salary negotiation misconceptions</a>.</p>
+  <p>See <a href="/guides/how-to-negotiate-salary">how to negotiate salary</a>, <a href="/guides/salary-research-guide">salary research guide</a>, <a href="/guides/negotiating-job-offers">negotiating job offers</a>, and <a href="/guides/salary-negotiation-misconceptions">common salary negotiation misconceptions</a>. The <a href="/faq">FAQ</a> covers salary history laws, competing offers, and total compensation components.</p>
   <script>
     document.getElementById('calc').addEventListener('submit', e => {
       e.preventDefault();

@@ -1,14 +1,55 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const title = 'Methodology | salarynegotiationcalc.com';
-const description = 'How the salary negotiation calculator estimates target ranges: industry multipliers, location premiums, and experience adjustments.';
+const description = 'How the salary negotiation calculator estimates target ranges: industry multipliers, location premiums, experience adjustments, and the anchoring framework.';
 ---
 <BaseLayout title={title} description={description}>
-  <h1>Methodology</h1>
-  <p><em>Reviewed by Aspen Lockwood (AL), Editor-in-Chief. Updated May 2026.</em></p>
-  <h2>Base rate</h2><p>The user&rsquo;s current salary (or offer amount if negotiating a specific offer) is used as the starting point.</p>
-  <h2>Industry multiplier</h2><p>Tech: 1.20, Finance: 1.18, Legal: 1.15, Healthcare: 1.10, Engineering: 1.08, Other: 1.0, Marketing: 0.98, Government: 0.90, Education: 0.85. Derived from BLS Occupational Employment Statistics and published Glassdoor/LinkedIn salary data by industry category.</p>
-  <h2>Location multiplier</h2><p>Tier 1 (NYC/SF/Seattle/Boston/DC): 1.25. Tier 2 (Chicago/Austin/Denver/Miami/Atlanta): 1.08. Tier 3/rural: 0.95. Remote: 1.0 (no location adjustment).</p>
-  <h2>Experience adjustment</h2><p>3% per year up to a cap of 40% (approximately 13 years). Reflects diminishing marginal returns to additional experience — a 15-year professional doesn&rsquo;t earn proportionally more than a 12-year professional in most roles.</p>
-  <h2>Target range</h2><p>Low: market estimate × 1.05. High: market estimate × 1.20. Opening ask: market estimate × 1.25. Anchoring 25% above market provides room to negotiate to 10–15% above market while appearing reasonable.</p>
+  <h1>Methodology &mdash; How We Estimate Salary Negotiation Targets</h1>
+  <p><em>Reviewed by Owen Barrister (OB), Editor-in-Chief &mdash; Compensation Strategy &amp; Career Negotiation Practice. Updated May 2026.</em></p>
+
+  <p>This page documents every assumption the salary negotiation calculator makes. Salary ranges are driven by labor market dynamics — industry demand, geographic cost of labor, experience premiums, and company-specific pay structures — none of which the calculator can perfectly capture. The model uses published Bureau of Labor Statistics Occupational Employment Statistics, commercial salary database research from Glassdoor, Levels.fyi, and LinkedIn Salary, and HR compensation benchmarking methodology to estimate market rate and negotiation target ranges.</p>
+
+  <h2>Step 1: Base Rate</h2>
+  <p>The calculation begins with either the user&rsquo;s current salary or the existing offer amount (if the user is negotiating a specific offer). Using the current salary as a base reflects the most common anchoring point in salary negotiations — most negotiators start from their current compensation and estimate upward movement. Using an existing offer as the base allows the calculator to estimate what a reasonable counter would be relative to that specific offer.</p>
+  <p>The base rate does not represent the user&rsquo;s ceiling — it is the starting point for applying market adjustments. The goal of the calculator is to produce a market-rate estimate that reflects what the position is worth in the current labor market, adjusted for industry and location, rather than simply adding a fixed percentage to current compensation.</p>
+
+  <h2>Step 2: Industry Multiplier</h2>
+  <p>Industry is the single largest driver of salary variation for equivalent roles and experience levels. The calculator applies the following industry multipliers, derived from BLS Occupational Employment Statistics and published commercial salary database analysis:</p>
+  <ul>
+    <li><strong>Technology / Software: 1.20.</strong> Technology roles consistently command the highest premiums across experience levels. Software engineering, product management, data science, and machine learning roles at major technology companies pay substantially above the cross-industry median for comparable cognitive work. The 1.20 multiplier reflects the documented technology wage premium in published BLS and commercial data.</li>
+    <li><strong>Finance / Banking / Insurance: 1.18.</strong> Financial services — investment banking, asset management, financial technology, insurance, and commercial banking — commands a premium second only to technology for comparable professional roles. The premium reflects both the profitability of financial services firms and the significant performance-linked compensation (bonuses) that supplement base salary.</li>
+    <li><strong>Legal / Law: 1.15.</strong> Law firm and corporate legal roles pay a significant premium reflecting the specialized credential requirements (JD, bar admission) and the high revenue generated per hour of professional time in legal services.</li>
+    <li><strong>Healthcare / Pharma: 1.10.</strong> Healthcare and pharmaceutical roles command above-average compensation reflecting credential requirements, regulatory complexity, and the strong demand for specialized clinical and scientific expertise.</li>
+    <li><strong>Engineering / Manufacturing: 1.08.</strong> Traditional engineering roles in manufacturing, aerospace, civil engineering, and chemical engineering command modest premiums above the cross-industry median.</li>
+    <li><strong>Other / General: 1.0.</strong> Roles in industries not specifically categorized receive no adjustment — the base rate is assumed to be market rate.</li>
+    <li><strong>Marketing / Advertising / PR: 0.98.</strong> Marketing roles pay slightly below the cross-industry median for comparable experience levels, reflecting oversupply in creative and marketing talent relative to demand.</li>
+    <li><strong>Government / Public Sector: 0.90.</strong> Government roles pay below private sector equivalents at the median, though they frequently provide superior benefits, pension plans, and job security that partially offset the base salary discount.</li>
+    <li><strong>Education / Nonprofit: 0.85.</strong> Education and nonprofit roles pay the largest discount to private sector equivalents, reflecting sector-specific funding constraints and the non-monetary compensation (mission alignment, stability) that attracts candidates despite below-market salaries.</li>
+  </ul>
+
+  <h2>Step 3: Location Multiplier</h2>
+  <p>Geographic labor market differences drive significant compensation variation. The calculator applies the following location multipliers based on Bureau of Labor Statistics metropolitan area wage data and commercial salary database geographic adjustments:</p>
+  <ul>
+    <li><strong>Tier 1 cities (NYC, SF, Seattle, Boston, DC): 1.25.</strong> The highest-cost, highest-wage metropolitan areas in the United States pay a substantial premium — particularly for technology, finance, and legal roles — reflecting both higher cost of living and higher employer competition for talent in these markets.</li>
+    <li><strong>Tier 2 cities (Chicago, Austin, Denver, Miami, Atlanta): 1.08.</strong> Mid-tier major metros pay a moderate premium above the national median, reflecting significant but not extreme cost of living and competitive labor markets in most industries.</li>
+    <li><strong>Tier 3 / suburban / rural: 0.95.</strong> Smaller markets and suburban or rural locations pay below the national median in most industries, reflecting lower cost of living and less competition for talent.</li>
+    <li><strong>Fully remote (no location premium): 1.0.</strong> Remote roles are increasingly common, and many companies have adopted location-agnostic pay structures or national-median benchmarks for remote employees. The 1.0 multiplier reflects the absence of a geographic adjustment; remote employees may receive above or below this rate depending on the company&rsquo;s specific remote pay policy.</li>
+  </ul>
+
+  <h2>Step 4: Experience Adjustment</h2>
+  <p>The calculator applies an experience premium of 3% per year of relevant experience, capped at 40% (approximately 13 years). This structure reflects the well-documented diminishing returns to experience in professional salary growth: early-career professionals command significant year-over-year salary increases as they develop skill and demonstrate competence; mid-career professionals see more modest annual progression; and senior professionals&rsquo; compensation is increasingly determined by role scope, performance, and specific expertise rather than years of experience alone.</p>
+  <p>The 40% cap prevents the model from producing unrealistically high estimates for very experienced candidates — a 25-year professional does not, on average, earn proportionally more than a 13-year professional in the same industry and location for the same role. Experience beyond the cap may be captured in job title and level adjustments that are not modeled in the calculator.</p>
+
+  <h2>Step 5: Target Range and Opening Anchor</h2>
+  <p>The calculator produces three outputs from the market rate estimate:</p>
+  <ul>
+    <li><strong>Target range low (market estimate × 1.05):</strong> The lower bound of the negotiation target — 5% above the calculated market rate. This represents the minimum acceptable offer for a candidate who has done their research and is confident in their market value. Accepting at the market rate (1.0×) or below is not negotiating; the target range starts above market.</li>
+    <li><strong>Target range high (market estimate × 1.20):</strong> The upper bound of the negotiation target — 20% above the calculated market rate. This represents an optimistic but achievable outcome for a candidate with strong leverage (competing offer, specialized skills in high demand, exceptional track record).</li>
+    <li><strong>Opening ask / anchor (market estimate × 1.25):</strong> The recommended opening number — 25% above the calculated market rate. Research on negotiation anchoring consistently shows that the first number stated in a negotiation has outsized influence on the final outcome. Anchoring 25% above market provides negotiating room to settle at 10–20% above market while appearing reasonable. Anchoring too low costs the candidate money and signals willingness to accept less than market.</li>
+  </ul>
+
+  <h2>What the Calculator Does Not Model</h2>
+  <p>The calculator does not model: bonus structures (annual performance bonuses, which can equal 10–100% of base salary in finance and senior corporate roles); equity compensation (RSUs, stock options, which can dwarf base salary in technology and early-stage company roles); benefits value (health insurance, retirement matching, paid time off, which can represent 20–40% of total compensation cost); specific company pay bands (which may be narrower or wider than the industry average); or the effect of competing offers (which typically produce the largest negotiation outcomes when disclosed professionally). The calculator estimates base salary only — total compensation negotiation requires understanding the full package, not just base salary.</p>
+
+  <p>Return to the <a href="/">calculator</a> or see the <a href="/guides/how-to-negotiate-salary">how to negotiate salary guide</a>.</p>
 </BaseLayout>
